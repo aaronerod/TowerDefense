@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: LayoutAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: e5235314ed41c41f388e39ba013c0e8e, type: 3}
+    totalSpriteSurfaceArea: 672076
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 37b761229450b5e419be6433896ff720, type: 3}
+  - {fileID: 21300000, guid: e76f5b42b90dd564594eb30b4a93dcf0, type: 3}
+  - {fileID: 21300000, guid: 611c85c255cf83f4184b98a682f36348, type: 3}
+  - {fileID: 21300000, guid: 669243f22fed9b54eb0abd3b8f607ba4, type: 3}
+  - {fileID: 21300000, guid: 2ef20cc748ddb41dbba937b2bc25bc36, type: 3}
+  - {fileID: 21300000, guid: 21dbea2924cf5934183bc6a735dbf8ab, type: 3}
+  - {fileID: 21300000, guid: 2cfb182bfd8594361be533a29a9d3530, type: 3}
+  - {fileID: 21300000, guid: 7321a4bbeee24ad4bbf7c138a1951841, type: 3}
+  - {fileID: 4396815735692609558, guid: 2a67f31c8a83744c592af9febc181478, type: 3}
+  - {fileID: -6390161202643404760, guid: 2a67f31c8a83744c592af9febc181478, type: 3}
+  - {fileID: 21300000, guid: 65e917cd8f9815540a28a6f8be8ea802, type: 3}
+  - {fileID: 21300000, guid: 7849a87e8ea234638a011eeb1958e6e8, type: 3}
+  - {fileID: -6390161202643404760, guid: 74ec85be57f444ba18cac6371abbf582, type: 3}
+  - {fileID: 5579654689215925724, guid: 74ec85be57f444ba18cac6371abbf582, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - circleLineMiddle
+  - SquareRounded
+  - squareRounderLineMiddle
+  - squareRounderLine
+  - TriangleRounded
+  - circleLine
+  - Square
+  - dots
+  - SquareRoundedHalf_1
+  - SquareRoundedHalf_0
+  - circle
+  - CircleDeath
+  - SquareRoundedQuarter
+  - SquareRoundedQuarter_0
+  m_RenderDataMap: {}
+  m_Tag: LayoutAtlas
+  m_IsVariant: 0
