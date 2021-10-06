@@ -16,11 +16,14 @@ public class MapController : MonoBehaviour
     private TurretData turretData;
     [SerializeField]
     private InputTap inputTap;
+
+    public GridMap GridMap { get => gridMap; set => gridMap = value; }
+
     public void Start()
     {
         inputTap.PointerClick.AddListener(OnClickReceived);
         turretSpawner = turretSpawnerReference.GetComponent<ITurretSpawner>();
-        gridMap.CreateGrid();
+        GridMap.CreateGrid();
         
     }
 
@@ -34,11 +37,10 @@ public class MapController : MonoBehaviour
     {
         int x;
         int y;
-        GridCell gridCell = gridMap.GetCell(position);
+        GridCell gridCell = GridMap.GetCell(position);
         if (gridCell != null) {
-            Debug.LogError(gridCell.CurrentBuilding);
             if (gridCell.IsEmpty) { 
-                Vector2 finalPosition = gridMap.GridToWorld(gridCell.Coordinates.x, gridCell.Coordinates.y);
+                Vector2 finalPosition = GridMap.GridToWorld(gridCell.Coordinates.x, gridCell.Coordinates.y);
                 Turret turret = turretSpawner.SpawnTurret(turretData, finalPosition);
                 turrets.Add(turret);
                 gridCell.AssignBuildable(turret);
@@ -61,8 +63,8 @@ public class MapController : MonoBehaviour
         return key;
     }
 
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
     {
-        gridMap.OnDrawGizmosSelected();
+        GridMap.OnDrawGizmosSelected();
     }
 }

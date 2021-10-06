@@ -23,9 +23,31 @@ public class GridMap
         {
             for(int y = 0; y < rows; y++)
             {
-                grid[x, y] = new GridCell(new Vector2Int(x, y), true);
+                grid[x, y] = new GridCell(new Vector2Int(x, y),origin+ new Vector3(x*cellSize,y*cellSize)+Vector3.one*cellSize*.5f, true);
             }
         }
+    }
+
+    public GridCell GetNearestCell(int x, int y)
+    {
+        if (grid != null)
+        {
+            x = Mathf.Clamp(x, 0, cols-1);
+            y = Mathf.Clamp(y, 0, rows-1);
+
+            Debug.LogError(x + " " + y);
+            return grid[x, y];
+        }
+        else
+            return null;
+    }
+
+    public GridCell GetNearestCell(Vector3 worldPosition)
+    {
+        int x;
+        int y;
+        WorldToGrid(worldPosition, out x, out y);
+        return GetNearestCell(x, y);
     }
 
     public GridCell GetCell(Vector3 worldPosition)
@@ -49,11 +71,7 @@ public class GridMap
         Vector3 localPosition = worldPosition - origin;
         x =  Mathf.FloorToInt(localPosition.x / cellSize);
         y = Mathf.FloorToInt(localPosition.y / cellSize );
-        if(x<0||x>=cols||y<0||y>=rows)
-        {
-            x = -1;
-            y = -1;
-        }
+        
     }
 
     /// <summary>
@@ -87,42 +105,4 @@ public class GridMap
             }
         }
     }
-}
-
-public class GridCell
-{
-    private Vector2Int coordinates;
-    private IBuildable currentBuilding;
-    private List<Enemy> enemies = new List<Enemy>();
-    private bool isBuildable;
-
-    public bool IsEmpty => CurrentBuilding == null;
-    public Vector2Int Coordinates { get => coordinates; set => coordinates = value; }
-    public IBuildable CurrentBuilding { get => currentBuilding; set => currentBuilding = value; }
-    public List<Enemy> Enemies { get => enemies; set => enemies = value; }
-    public bool IsBuildable { get => isBuildable; set => isBuildable = value; }
-    public int Cost
-    {
-        get
-        {
-            int cost = 1;
-            if (!IsEmpty)
-                cost += 10;
-            return cost;
-        }
-    }
-    public GridCell(Vector2Int coordinates, bool isBuildable)
-    {
-        this.Coordinates = coordinates;
-        this.IsBuildable = isBuildable;
-    }
-    public void AssignBuildable(IBuildable buildable)
-    {
-        CurrentBuilding = buildable;
-    }
-    public void RemoveBuildable()
-    {
-
-    }
-    
 }
