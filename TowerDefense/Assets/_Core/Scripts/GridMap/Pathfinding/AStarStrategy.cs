@@ -5,25 +5,12 @@ using UnityEngine;
 public class AStarStrategy : MonoBehaviour, IPathfinder
 {
     [SerializeField]
-    MapController mapController;
+    GridMap gridMap=>mapControllerConnector.Controller.GridMap;
     [SerializeField]
-    private Transform start;
-    [SerializeField]
-    private Transform end;
-    [NaughtyAttributes.Button("Test Path")]
-    void GetPath()
-    {
-    }
+    MapControllerConnector mapControllerConnector;
 
-    List<GridCell> path = new List<GridCell>();
-    void Update()
-    {
 
-        path = FindPath(mapController.GridMap, start.position, end.position);
-        Debug.LogError("Path " + path.Count);
-    }
-
-    public List<GridCell> FindPath(GridMap gridMap, Vector2 start, Vector2 end)
+    public List<GridCell> FindPath(Vector2 start, Vector2 end)
     {
         List<GridCell> finalPath = new List<GridCell>();
         GridCell startCell = gridMap.GetNearestCell(start);
@@ -83,12 +70,15 @@ public class AStarStrategy : MonoBehaviour, IPathfinder
             }
 
             GridCell currentNode = endCell;
-            while (currentNode != startCell)
+            if (currentNode != null)
             {
-                finalPath.Add(currentNode);
-                currentNode = parents[currentNode];
+                while (currentNode != startCell)
+                {
+                    finalPath.Add(currentNode);
+                    currentNode = parents[currentNode];
+                }
+                finalPath.Reverse();
             }
-            finalPath.Reverse();
             finalPath.Insert(0, startCell);
         }
         return finalPath;
@@ -142,15 +132,5 @@ public class AStarStrategy : MonoBehaviour, IPathfinder
         }
         return neighbours;
 
-    }
-
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        foreach(var point in path)
-        {
-            Gizmos.DrawSphere(point.WorldCoordinates, .2f);
-        }
-        Gizmos.color = Color.white;
     }
 }

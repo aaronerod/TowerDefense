@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
         enemyInstance.transform.position = worldPosition;
         Enemy enemy = enemyInstance.GetComponent<Enemy>();
         enemy.Initialize();
-        enemy.transformTarget = target;
+        enemy.attackTargetTransform = target;
 
         SetUpEnemy(enemy);
         return enemyInstance.GetComponent<Enemy>();
@@ -33,7 +33,6 @@ public class EnemySpawner : MonoBehaviour
 
     public void OnEnemyDestroyed(IDamageReceiver damageReceiver)
     {
-        Debug.LogError("HEERE");
         Enemy enemy = damageReceiver as Enemy;
         enemy.Destroyed -= OnEnemyDestroyed;
 
@@ -49,7 +48,6 @@ public class EnemySpawner : MonoBehaviour
             destroyedEnemies.Add(enemy.EnemyData, enemies);
         }
         enemy.GameObject.SetActive(false);
-        Debug.LogError("HERE");
     }
 
     public GameObject GetEnemy(EnemyData enemyData)

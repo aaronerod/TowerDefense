@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 791518318397668426}
   - component: {fileID: 791518318397668421}
+  - component: {fileID: 3051668329170521015}
+  - component: {fileID: 2352041230806114773}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -46,7 +48,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 5
   enemyData: {fileID: 11400000, guid: 5f078a04046cf4e4f9935fca90c8b88c, type: 2}
-  transformTarget: {fileID: 0}
+  attackTargetTransform: {fileID: 0}
+  movementBehavior: {fileID: 3051668329170521015}
+--- !u!114 &3051668329170521015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791518318397668420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 315162004e955436ca143b0d398b3471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aStarStrategy: {fileID: 2352041230806114773}
+--- !u!114 &2352041230806114773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 791518318397668420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0878da7ccb4e4a31b1e2eac82c34645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapControllerConnector: {fileID: 11400000, guid: ea6e1f772e09142a3b78dfdfd03bcdab, type: 2}
 --- !u!1 &791518319539353906
 GameObject:
   m_ObjectHideFlags: 0

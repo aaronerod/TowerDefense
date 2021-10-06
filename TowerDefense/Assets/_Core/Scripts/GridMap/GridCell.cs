@@ -12,10 +12,10 @@ public class GridCell
     public Vector2Int Coordinates { get => coordinates; set => coordinates = value; }
     public IBuildable CurrentBuilding { get => currentBuilding; set => currentBuilding = value; }
     public List<Enemy> Enemies { get => enemies; set => enemies = value; }
-    public bool IsWalkable { get => isWalkable; set => isWalkable = value; }
-    public Vector2 WorldCoordinates { get => worldCoordinates; set => worldCoordinates = value; }
-
-    public GridCell(Vector2Int coordinates, Vector2 worldCoordinates, bool isBuildable)
+    public bool IsWalkable { get => isWalkable&&IsEmpty; set => isWalkable = value; }
+    public Vector3 WorldCoordinates { get => worldCoordinates; set => worldCoordinates = value; }
+    
+    public GridCell(Vector2Int coordinates, Vector3 worldCoordinates, bool isBuildable)
     {
         this.Coordinates = coordinates;
         this.WorldCoordinates = worldCoordinates;

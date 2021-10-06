@@ -361,7 +361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 375969352}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 4.83, y: 4.32, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -411,6 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be61e22d40128417da8ac7c3c27dd030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mapControllerConnector: {fileID: 11400000, guid: ea6e1f772e09142a3b78dfdfd03bcdab, type: 2}
   gridMap:
     rows: 10
     cols: 10
@@ -543,9 +544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0878da7ccb4e4a31b1e2eac82c34645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapController: {fileID: 712533942}
-  start: {fileID: 1628742515}
-  end: {fileID: 1962812069}
+  mapControllerConnector: {fileID: 0}
 --- !u!1 &1251305779
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +926,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2000528255}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.19, y: 7.47, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1475101160}

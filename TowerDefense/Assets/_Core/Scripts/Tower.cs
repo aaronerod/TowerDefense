@@ -13,7 +13,6 @@ public class Tower : DamageReceiver, IBuildable
     }
     void OnTowerDestroyed(IDamageReceiver damageReceiver)
     {
-        Debug.LogError("Destroyed");
     }
 
     public void Build(GridCell gridCell)

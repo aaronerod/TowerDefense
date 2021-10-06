@@ -9,13 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 608c08c623c1944dab50b4ba11941c51, type: 3}
-  m_Name: Turret Data
+  m_Script: {fileID: 11500000, guid: 584003b0fe1ae4fec8ef14b624fbb0f1, type: 3}
+  m_Name: Map connector
   m_EditorClassIdentifier: 
-  attackData:
-    damageAmount: 0
-    attackRate: 1
-    range: 4
-    projectileType: 0
-  cost: 0
-  turretPrefab: {fileID: 3026398362820451257, guid: d1a3e1441c3f544f885ecd47eb7c73f2, type: 3}

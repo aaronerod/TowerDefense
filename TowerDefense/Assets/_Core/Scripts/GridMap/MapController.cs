@@ -5,6 +5,8 @@ using UnityEngine;
 public class MapController : MonoBehaviour
 {
     [SerializeField]
+    private MapControllerConnector mapControllerConnector;
+    [SerializeField]
     private GridMap gridMap;
     [SerializeField]
     HordeController hordeController;
@@ -21,6 +23,7 @@ public class MapController : MonoBehaviour
 
     public void Start()
     {
+        mapControllerConnector.Controller = this;
         inputTap.PointerClick.AddListener(OnClickReceived);
         turretSpawner = turretSpawnerReference.GetComponent<ITurretSpawner>();
         GridMap.CreateGrid();
