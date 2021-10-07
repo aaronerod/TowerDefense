@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementBehavior : MonoBehaviour
 {
     [SerializeField]
-    private AStarStrategy aStarStrategy;
+    private PathfindingStrategy aStarStrategy;
 
     private Transform target;
     private float movementSpeed;
@@ -61,12 +61,10 @@ public class MovementBehavior : MonoBehaviour
         {
             if(Vector2.Distance(transform.position,targetPointModified)<.2f)
             {
-                Debug.LogError("Move next point");
                 SelectNextCell();
             }
         }
 
-//        Debug.LogError(Vector2.Distance(transform.position, targetPoint.WorldCoordinates));
     }
     private void SelectNextCell()
     {
@@ -81,7 +79,7 @@ public class MovementBehavior : MonoBehaviour
                 Vector3 direction = transform.position - targetPoint.WorldCoordinates;
                 direction.Normalize();
                 Vector3 rangePosition = targetPoint.WorldCoordinates + direction * range;
-                targetPointModified = targetPoint.WorldCoordinates + (new Vector3(Random.Range(-1, 1), Random.Range(-1, 1)).normalized * range*.7f);
+                targetPointModified = targetPoint.WorldCoordinates + (new Vector3(Random.Range(-1, 1), Random.Range(-1, 1)).normalized * range*.6f);
                 
             }
         }

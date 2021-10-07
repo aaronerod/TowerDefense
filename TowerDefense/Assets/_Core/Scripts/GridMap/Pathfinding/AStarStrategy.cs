@@ -2,15 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AStarStrategy : MonoBehaviour, IPathfinder
+public class AStarStrategy : PathfindingStrategy
 {
-    [SerializeField]
-    GridMap gridMap=>mapControllerConnector.Controller.GridMap;
-    [SerializeField]
-    MapControllerConnector mapControllerConnector;
-
-
-    public List<GridCell> FindPath(Vector2 start, Vector2 end)
+    public override List<GridCell> FindPath(Vector2 start, Vector2 end)
     {
         List<GridCell> finalPath = new List<GridCell>();
         GridCell startCell = gridMap.GetNearestCell(start);
@@ -133,4 +127,5 @@ public class AStarStrategy : MonoBehaviour, IPathfinder
         return neighbours;
 
     }
+
 }

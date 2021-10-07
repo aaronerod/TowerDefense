@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f7ab0f3d69a4592a1f31650b17f8e0, type: 3}
+  m_Name: Horde4
+  m_EditorClassIdentifier: 
+  delayBetweenHordes: 60
+  hordes:
+  - groups:
+    - enemies:
+      - {fileID: 11400000, guid: 5f078a04046cf4e4f9935fca90c8b88c, type: 2}
+      spawnAmount: 5
+      spawnRate: 1
+  - groups:
+    - enemies:
+      - {fileID: 11400000, guid: 34930a10cccfe4ae99334582f5610672, type: 2}
+      - {fileID: 11400000, guid: 5f078a04046cf4e4f9935fca90c8b88c, type: 2}
+      spawnAmount: 5
+      spawnRate: 1
+  - groups:
+    - enemies:
+      - {fileID: 11400000, guid: b6881cd8f4bd94ce19af3b32cf900695, type: 2}
+      spawnAmount: 10
+      spawnRate: 0.8
+  - groups:
+    - enemies:
+      - {fileID: 11400000, guid: 34930a10cccfe4ae99334582f5610672, type: 2}
+      - {fileID: 11400000, guid: 5f078a04046cf4e4f9935fca90c8b88c, type: 2}
+      spawnAmount: 10
+      spawnRate: 0.8

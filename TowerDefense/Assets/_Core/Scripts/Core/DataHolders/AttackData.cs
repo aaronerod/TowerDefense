@@ -11,11 +11,15 @@ public class AttackData
     [SerializeField]
     private int damageAmount;
     [SerializeField]
-    private int attackRate;
+    private float attackRate;
     [SerializeField]
     private float range;
     [SerializeField]
     private ProjectileType projectileType;
+    [SerializeField]
+    private UnitType targetType;
+    [SerializeField]
+    private UnitType unitType;
 
     /// <summary>
     /// The amount of damage that the attacker can do
@@ -24,7 +28,7 @@ public class AttackData
     /// <summary>
     /// How fast the attacker can perform an attack
     /// </summary>
-    public int AttackRate { get => attackRate; set => attackRate = value; }
+    public float AttackRate { get => attackRate; set => attackRate = value; }
     /// <summary>
     /// How far con attack
     /// </summary>
@@ -33,4 +37,12 @@ public class AttackData
     /// The type of projectile the attacker is going to use
     /// </summary>
     public ProjectileType ProjectileType { get => projectileType; set => projectileType = value; }
+    /// <summary>
+    /// Type of target to attack
+    /// </summary>
+    public UnitType TargetType { get => targetType; set => targetType = value; }
+    /// <summary>
+    /// Type of unit
+    /// </summary>
+    public UnitType UnitType { get => unitType; set => unitType = value; }
 }

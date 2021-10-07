@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Tower : DamageReceiver, IBuildable
 {
+    public TurretData TurretData => null;
+
     private void Start()
     {
         Destroyed += OnTowerDestroyed;

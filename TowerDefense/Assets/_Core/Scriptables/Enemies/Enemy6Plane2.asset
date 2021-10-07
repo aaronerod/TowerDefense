@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Enemy6Plane2
   m_EditorClassIdentifier: 
   attackData:
-    damageAmount: 1
+    damageAmount: 5
     attackRate: 1
-    range: 0.7
+    range: 1.5
     projectileType: 0
-  movementSpeed: 2.5
+    targetType: -1
+    unitType: -1
+  movementSpeed: 2.1
   enemyPrefab: {fileID: 1474122986600060388, guid: a9356c4a75c9340bebaf406f428fc663, type: 3}
-  health: 20
+  health: 40
+  coins: 50

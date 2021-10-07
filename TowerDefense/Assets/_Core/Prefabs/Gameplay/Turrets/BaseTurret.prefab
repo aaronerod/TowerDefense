@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 432745042683977449}
   - component: {fileID: 6339480514162048709}
   - component: {fileID: 501323461617423145}
+  - component: {fileID: 8324380792051965248}
   m_Layer: 0
   m_Name: BaseTurret
   m_TagString: Untagged
@@ -42,8 +43,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459451182211197472}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 131251457
+  m_SortingLayer: 2
   m_SortingOrder: 0
 --- !u!114 &501323461617423145
 MonoBehaviour:
@@ -58,9 +59,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turretData: {fileID: 0}
-  turret: {fileID: 9035790113583963827}
+  turret: {fileID: 3487268725087303195}
+  attackBehavior: {fileID: 8324380792051965248}
   rotationSpeed: 0.5
+--- !u!114 &8324380792051965248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 459451182211197472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ca58faf2c9554b8ebf0f11f042ca6f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   timeToNewAttack: 0
+  fire: {fileID: 0}
 --- !u!1 &3514836620474273929
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,9 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackData:
     damageAmount: 1
-    attackRate: 1
-    range: 0.7
+    attackRate: 0.4
+    range: 1
     projectileType: 0
-  movementSpeed: 2.5
+    targetType: -1
+    unitType: -1
+  movementSpeed: 2.1
   enemyPrefab: {fileID: 3121423997464088232, guid: 0ecbbad4c4dc5421fac50b559ad7f259, type: 3}
-  health: 20
+  health: 35
+  coins: 35

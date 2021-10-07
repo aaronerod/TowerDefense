@@ -27,7 +27,7 @@ public class GridCell
     }
     public void RemoveBuildable()
     {
-
+        CurrentBuilding = null;
     }
 
 }

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 207e35d2258cd4892a0a8b51594a835c, type: 3}
   m_Name: Player Data
   m_EditorClassIdentifier: 
-  coins: 50
+  economyData:
+    coins: 0
   level: 2

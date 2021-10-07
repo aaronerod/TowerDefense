@@ -9,25 +9,37 @@ using UnityEngine;
 public abstract class DamageReceiver : MonoBehaviour, IDamageReceiver
 {
     public event Action<IDamageReceiver> Destroyed;
-    public event Action<IDamageReceiver> DamageReceived;
+    public event Action<IDamageReceiver> HealthChanged;
 
-    [SerializeField]
     protected int health;
-    public int Health { get => health; set =>health = value; }
+    protected int maxHealth;
+    public int Health
+    {
+        get => health;
+        set {
+            health = value;
+            HealthChanged?.Invoke(this);
+        }
+
+    }
+    public int MaxHealth { get => maxHealth; set => maxHealth = value; }
     public GameObject GameObject => gameObject;
 
-    public bool IsAlive => health>0;
+    public bool IsAlive => Health>0;
 
 
+    public void Initialize(int maxHealth)
+    {
+        MaxHealth = maxHealth;
+        Health = maxHealth;
+    }
     public void TakeDamage(IAttacker attacker, int amount)
     {
-        health = Mathf.Clamp(health- amount,0,int.MaxValue);
-        if (health <= 0)
+        Health = Mathf.Clamp(Health- amount,0,int.MaxValue);
+        if (Health <= 0)
         {
             Destroyed?.Invoke(this);
         }
-        else
-            DamageReceived?.Invoke(this);
     }
 
 #if UNITY_EDITOR
@@ -36,5 +48,6 @@ public abstract class DamageReceiver : MonoBehaviour, IDamageReceiver
     {
         TakeDamage(null, 1);
     }
+
 #endif
 }

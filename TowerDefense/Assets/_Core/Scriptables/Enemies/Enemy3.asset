@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Enemy3
   m_EditorClassIdentifier: 
   attackData:
-    damageAmount: 1
-    attackRate: 1
-    range: 0.7
+    damageAmount: 5
+    attackRate: 1.5
+    range: 1
     projectileType: 0
-  movementSpeed: 2.5
+    targetType: -1
+    unitType: 1
+  movementSpeed: 2
   enemyPrefab: {fileID: 297245560938469899, guid: 2d34e0a03740747619140e1bda87fb3f, type: 3}
   health: 20
+  coins: 30

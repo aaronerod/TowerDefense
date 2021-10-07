@@ -3,27 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
-public class InputDrag : MonoBehaviour, IInitializePotentialDragHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class InputDrag : InputBase, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    public UnityEvent DragStarted;
-    public UnityEvent DragUpdated;
-    public UnityEvent DragCompleted;
+    public UnityEventVector DragStarted;
+    public UnityEventVector DragUpdated;
+    public UnityEventVector DragCompleted;
     public void OnBeginDrag(PointerEventData eventData)
     {
-        DragStarted?.Invoke();
+        Vector3 worldPosition = GetWorldPosition(eventData.position);
+        DragStarted?.Invoke(worldPosition);
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        DragUpdated?.Invoke();
+        Vector3 worldPosition = GetWorldPosition(eventData.position);
+        DragUpdated?.Invoke(worldPosition);
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        DragCompleted?.Invoke();
+        Vector3 worldPosition = GetWorldPosition(eventData.position);
+        DragCompleted?.Invoke(worldPosition);
     }
 
-    public void OnInitializePotentialDrag(PointerEventData eventData)
-    {
-    }
 }

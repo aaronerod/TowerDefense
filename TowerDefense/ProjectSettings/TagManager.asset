@@ -38,6 +38,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Ground
+    uniqueID: 608753057
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enemy
+    uniqueID: 1521048877
+    locked: 0
+  - name: Turrets
+    uniqueID: 131251457
+    locked: 0
+  - name: Air
+    uniqueID: 940645827
+    locked: 0
+  - name: UI
+    uniqueID: 843399945
     locked: 0

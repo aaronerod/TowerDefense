@@ -5,16 +5,6 @@ using System;
 [CreateAssetMenu(fileName ="Player Data", menuName ="TowerDefense/Data Holders/Player Data")]
 public class PlayerData : ScriptableObject
 {
-    private event Action<int> coinsChanged;
-    public event Action<int> CoinsChanged
-    {
-        add
-        {
-            coinsChanged += value;
-            value(coins);
-        }
-        remove => coinsChanged -= value;
-    }
     private event Action<int> lifesChanged;
     public event Action<int> LifesChanged
     {
@@ -28,6 +18,7 @@ public class PlayerData : ScriptableObject
         }
         remove => lifesChanged -= value;
     }
+    public event Action TowerDestoryed;
     private event Action<int> levelChanged;
     public event Action<int> LevelChanged
     {
@@ -39,19 +30,13 @@ public class PlayerData : ScriptableObject
         remove => levelChanged -= value;
     }
     [SerializeField]
-    private int coins;
+    EconomyData economyData;
     [SerializeField]
     private int level;
     [NonSerialized]
     private Tower currentTower; 
     
 
-    public int Coins { get => coins; set
-        {
-            coins = value;
-            coinsChanged?.Invoke(coins);
-        }
-    }
     public int Level { get => level; set
         {
             level = value;
@@ -59,15 +44,21 @@ public class PlayerData : ScriptableObject
         }
     }
 
-    public Tower CurrentTower { get => currentTower; set => currentTower = value; }
+    public Tower CurrentTower { get => currentTower;}
+    public EconomyData EconomyData { get => economyData; set => economyData = value; }
 
     public void SetCurrentTower(Tower tower)
     {
         currentTower = tower;
-        currentTower.DamageReceived += OnLifeChanged;
+        currentTower.HealthChanged += OnLifeChanged;
+        currentTower.Destroyed += OnTowerDestroyed;
         lifesChanged?.Invoke(currentTower.Health);
     }
-
+    private void OnTowerDestroyed(IDamageReceiver damageReceiver)
+    {
+        Time.timeScale = 0;
+        TowerDestoryed?.Invoke();
+    }
     private void OnLifeChanged(IDamageReceiver tower)
     {
         lifesChanged?.Invoke(tower.Health);
@@ -77,6 +68,6 @@ public class PlayerData : ScriptableObject
     [NaughtyAttributes.Button("Add coins")]
     public void AddCoins()
     {
-        Coins += 5;
+        EconomyData.AddCoins(5);
     }
 }

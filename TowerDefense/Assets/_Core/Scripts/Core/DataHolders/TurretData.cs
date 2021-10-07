@@ -10,6 +10,8 @@ public class TurretData : ScriptableObject
     [SerializeField]
     private int cost;
     [SerializeField]
+    private int sellingCost;
+    [SerializeField]
     private GameObject turretPrefab;
     [SerializeField]
     private GameObject uiTurretPrefab;
@@ -18,4 +20,5 @@ public class TurretData : ScriptableObject
     public int Cost { get => cost; set => cost = value; }
     public GameObject TurretPrefab { get => turretPrefab; set => turretPrefab = value; }
     public GameObject UiTurretPrefab { get => uiTurretPrefab; set => uiTurretPrefab = value; }
+    public int SellingCost { get => sellingCost; set => sellingCost = value; }
 }

@@ -15,28 +15,77 @@ public class GridMap
     [SerializeField]
     private Vector3 origin;
 
+    public int Rows { get => rows; set => rows = value; }
+    public int Cols { get => cols; set => cols = value; }
+    public float CellSize { get => cellSize; set => cellSize = value; }
+    public Vector3 Origin { get => origin; set => origin = value; }
+    public GridCell[,] Grid { get => grid; set => grid = value; }
+
+    public GridMap(Vector2Int gridSize, float cellSize, Vector3 origin)
+    {
+        this.cols = gridSize.x;
+        this.rows = gridSize.y;
+        this.origin = origin;
+        this.cellSize = cellSize;
+    }
+
+    public void LoadBoardData(string boardData, out Vector3 towerPos, out Vector3 spawnPos)
+    {
+        towerPos = Vector2.zero; 
+        spawnPos = Vector2.zero;
+        string[] rows = boardData.Split('\n');
+        for(int y=0;y<rows.Length;y++)
+        {
+            string row = rows[y];
+            string[] cols = row.Split(',');
+            for(int x =0;x< cols.Length;x++)
+            {
+                switch (cols[x])
+                {
+                    case "0":
+                        //Unwalkable
+                        Grid[x,rows.Length-1- y].IsWalkable = false;
+                        break;
+                    case "1":
+                        //Walkable
+                        Grid[x, rows.Length - 1 - y].IsWalkable = true;
+                        break;
+                    case "2":
+                        //Tower
+                        Grid[x, rows.Length - 1 - y].IsWalkable = true;
+                        towerPos = Grid[x, rows.Length - 1 - y].WorldCoordinates;
+                        break;
+                    case "3":
+                        //Spawn
+                        Grid[x, rows.Length - 1 - y].IsWalkable = true;
+                        spawnPos = Grid[x, rows.Length - 1 - y].WorldCoordinates;
+                        break;
+                }
+            }
+        }
+    }
+
     [NaughtyAttributes.Button("Create Grid")]
     public void CreateGrid()
     {
-        grid = new GridCell[cols, rows];
-        for(int x = 0; x < cols; x++)
+        Grid = new GridCell[Cols, Rows];
+        for(int x = 0; x < Cols; x++)
         {
-            for(int y = 0; y < rows; y++)
+            for(int y = 0; y < Rows; y++)
             {
-                grid[x, y] = new GridCell(new Vector2Int(x, y),origin+ new Vector3(x*cellSize,y*cellSize)+Vector3.one*cellSize*.5f, true);
+                Grid[x, y] = new GridCell(new Vector2Int(x, y),Origin+ new Vector3(x*CellSize,y*CellSize)+Vector3.one*CellSize*.5f, true);
             }
         }
     }
 
     public GridCell GetNearestCell(int x, int y)
     {
-        if (grid != null)
+        if (Grid != null)
         {
-            x = Mathf.Clamp(x, 0, cols-1);
-            y = Mathf.Clamp(y, 0, rows-1);
+            x = Mathf.Clamp(x, 0, Cols-1);
+            y = Mathf.Clamp(y, 0, Rows-1);
 
-            Debug.LogError(x + " " + y);
-            return grid[x, y];
+            return Grid[x, y];
         }
         else
             return null;
@@ -52,8 +101,8 @@ public class GridMap
 
     public GridCell GetCell(int x, int y)
     {
-        if (x >= 0 && x < cols && y >= 0 && y < rows)
-            return grid[x, y];
+        if (x >= 0 && x < Cols && y >= 0 && y < Rows)
+            return Grid[x, y];
         return null;
     }
 
@@ -65,6 +114,11 @@ public class GridMap
         return GetCell(x, y);
     }
 
+    public GridCell GetCenterCell()
+    {
+        return Grid[cols/2, rows/2];
+    }
+
     /// <summary>
     /// Converts world coordinates to grid coordinates
     /// </summary>
@@ -73,9 +127,9 @@ public class GridMap
     /// <param name="y">Y position in grid</param>
     public void WorldToGrid(Vector3 worldPosition, out int x, out int y)
     {
-        Vector3 localPosition = worldPosition - origin;
-        x =  Mathf.FloorToInt(localPosition.x / cellSize);
-        y = Mathf.FloorToInt(localPosition.y / cellSize );
+        Vector3 localPosition = worldPosition - Origin;
+        x =  Mathf.FloorToInt(localPosition.x / CellSize);
+        y = Mathf.FloorToInt(localPosition.y / CellSize );
         
     }
 
@@ -89,23 +143,23 @@ public class GridMap
     {
         Vector3 worldPosition = new Vector3(-1,-1);
 
-        if(x>=0&& x<cols && y >= 0 && y < rows)
+        if(x>=0&& x<Cols && y >= 0 && y < Rows)
         {
-            worldPosition.x = x * cellSize + origin.x+cellSize*.5f;
-            worldPosition.y = y * cellSize + origin.y+cellSize*.5f;
+            worldPosition.x = x * CellSize + Origin.x+CellSize*.5f;
+            worldPosition.y = y * CellSize + Origin.y+CellSize*.5f;
         }
         return worldPosition;
     }
 
     public void OnDrawGizmosSelected()
     {
-        if (grid != null)
+        if (Grid != null)
         {
-            for(int x=0;x<cols;x++)
+            for(int x=0;x<Cols;x++)
             {
-                for(int y = 0; y < rows; y++)
+                for(int y = 0; y < Rows; y++)
                 {
-                    Gizmos.DrawWireCube(origin + new Vector3(x, y) * cellSize+Vector3.one*cellSize*.5f, Vector3.one*cellSize);
+                    Gizmos.DrawWireCube(Origin + new Vector3(x, y) * CellSize+Vector3.one*CellSize*.5f, Vector3.one*CellSize);
                 }
             }
         }

@@ -5,11 +5,13 @@ using UnityEngine;
 /// <summary>
 /// Base class for all turrets
 /// </summary>
-public class Turret : MonoBehaviour, IAttacker, IBuildable
+public class Turret : MonoBehaviour, IBuildable
 {
     [SerializeField]
     private TurretData turretData;
     public GameObject GameObject => gameObject;
+
+    public TurretData TurretData => turretData;
 
     private Transform transformTarget;
     [SerializeField]
@@ -18,47 +20,32 @@ public class Turret : MonoBehaviour, IAttacker, IBuildable
     [SerializeField]
     private Transform turret;
     [SerializeField]
+    private AttackBehavior attackBehavior;
+    [SerializeField]
     private float rotationSpeed = .5f;
 
 
-    [SerializeField]
-    float timeToNewAttack;
 
     public void Initialize(TurretData turretData)
     {
         this.turretData = turretData;
+        transformTarget = null;
+        target = null;
     }
 
     public void UpdateBehaviors(List<Enemy> enemies)
     {
         UpdateTarget(enemies);
-        Attack();
+        attackBehavior.UpdateAttack(target, turretData.AttackData);
     }
 
-    void SearchNearestTarget(List<Enemy> enemies)
-    {
-        Enemy temporalTarget = null;
-        float minDistance = float.MaxValue;
-        foreach(var enemy in enemies)
-        {
-            if (enemy.IsAlive)
-            {
-                float distance = Vector2.Distance(transform.position, enemy.transform.position);
-                if (distance < minDistance)
-                {
-                    temporalTarget = enemy;
-                    minDistance = distance;
-                }
-            }
-        }
-        
-        target = temporalTarget;
-        if(target!=null)    
-        transformTarget = temporalTarget.transform;
-    }
     public void UpdateTarget(List<Enemy> enemies)
     {
-        SearchNearestTarget(enemies);
+        if (target != null && !target.IsAlive ||
+            transformTarget == null || (transformTarget != null &&
+            Vector2.Distance(transform.position, transformTarget.position) > turretData.AttackData.Range) ||
+            transformTarget!=null && !transformTarget.gameObject.activeInHierarchy)
+            SearchNearestTarget(enemies);
         if (transformTarget != null)
         {
             if (Vector2.Distance(transform.position, transformTarget.position) <= turretData.AttackData.Range)
@@ -74,19 +61,28 @@ public class Turret : MonoBehaviour, IAttacker, IBuildable
         }
     }
 
-    public void Attack()
+
+    void SearchNearestTarget(List<Enemy> enemies)
     {
-        timeToNewAttack -= Time.deltaTime;
-        if (target != null)
+        Enemy temporalTarget = null;
+        float minDistance = float.MaxValue;
+        foreach (var enemy in enemies)
         {
-            if (timeToNewAttack <= 0 )
+            if (enemy.IsAlive && turretData.AttackData.TargetType.HasFlag(enemy.EnemyData.AttackData.UnitType))
             {
-                timeToNewAttack = turretData.AttackData.AttackRate;
-                target.TakeDamage(this, turretData.AttackData.DamageAmount);
+                float distance = Vector2.Distance(transform.position, enemy.transform.position);
+                if (distance < minDistance)
+                {
+                    temporalTarget = enemy;
+                    minDistance = distance;
+                }
             }
         }
-    }
 
+        target = temporalTarget;
+        if (target != null)
+            transformTarget = temporalTarget.transform;
+    }
     private void OnDrawGizmosSelected()
     {
         if(turretData)

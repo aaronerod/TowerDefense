@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: TurretLaser
   m_EditorClassIdentifier: 
   attackData:
-    damageAmount: 0
-    attackRate: 2
-    range: 2
-    projectileType: 0
+    damageAmount: 1
+    attackRate: 0.4
+    range: 4
+    projectileType: 1
+    targetType: 1
+    unitType: 1
   cost: 150
+  sellingCost: 120
   turretPrefab: {fileID: 6321206911654363290, guid: 7dbb0645d2dac491886a5ca24e543530, type: 3}
   uiTurretPrefab: {fileID: 4117359718664386899, guid: af2419bf5815d4ee0bf19c1a8cb94516, type: 3}

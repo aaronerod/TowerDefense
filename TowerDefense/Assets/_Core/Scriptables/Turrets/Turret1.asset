@@ -13,10 +13,13 @@ MonoBehaviour:
   m_Name: Turret1
   m_EditorClassIdentifier: 
   attackData:
-    damageAmount: 2
+    damageAmount: 5
     attackRate: 2
-    range: 2
+    range: 1.5
     projectileType: 0
+    targetType: 1
+    unitType: 1
   cost: 50
+  sellingCost: 30
   turretPrefab: {fileID: 8643614248396344238, guid: 20f94f95292214d0da96bfcab19338cd, type: 3}
   uiTurretPrefab: {fileID: 7244176753025432150, guid: 1b7f97546054e4915b2a95e48174de3f, type: 3}

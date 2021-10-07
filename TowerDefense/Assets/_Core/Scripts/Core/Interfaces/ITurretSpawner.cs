@@ -5,4 +5,5 @@ using UnityEngine;
 public interface ITurretSpawner
 {
     public Turret SpawnTurret(TurretData turretData, Vector2 worldPosition);
+    public void RecycleTurret(Turret turret);
 }
