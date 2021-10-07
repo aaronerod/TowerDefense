@@ -1,6 +1,6 @@
 # TowerDefense
 
-Implementación de tower defense con distintos tipos de torretas y distintos tipos de enemigos.
+Implementación de tower defense con distintos tipos de torretas y distintos tipos de enemigos utilizando Unity 2020.3.10f1
 
 La definición de cada torreta y enemigo está establecida en un Scriptable Object el cual permite modificar rápidamente
 el balance y probar nuevos comportamientos.
@@ -23,7 +23,8 @@ Los tipos de enemigos son:
 -Avión 1. Dispara metralleta.
 -Avión 2. Dispara misiles.
 
-Este demo cuenta con 4 niveles completamente funcionales
+Este demo cuenta con 4 niveles completamente funcionales. 
+Escena de prueba: GameScene.unity
 
 ![](Level1.gif)![](Level2.gif)![](level3.gif)
 
