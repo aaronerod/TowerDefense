@@ -8,7 +8,9 @@ public class TurretSpawner : MonoBehaviour, ITurretSpawner
     public Turret SpawnTurret(TurretData turretData, Vector2 worldPosition)
     {
         GameObject turretInstance = Instantiate(turretData.TurretPrefab, worldPosition, Quaternion.identity);
-        return turretInstance.GetComponent<Turret>();
+        Turret turret = turretInstance.GetComponent<Turret>();
+        turret.Initialize(turretData);
+        return turret;
     }
 
 

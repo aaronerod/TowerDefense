@@ -125,7 +125,7 @@ public class AStarStrategy : MonoBehaviour, IPathfinder
             {
                 if (x == 0 && y == 0)
                     continue;
-                GridCell neighbour= grid.GetCell(new Vector3(cell.Coordinates.x + x, cell.Coordinates.y + y));
+                GridCell neighbour= grid.GetCell(cell.Coordinates.x + x, cell.Coordinates.y + y);
                 if (neighbour != null)
                     neighbours.Add(neighbour);
             }

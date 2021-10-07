@@ -50,14 +50,19 @@ public class GridMap
         return GetNearestCell(x, y);
     }
 
+    public GridCell GetCell(int x, int y)
+    {
+        if (x >= 0 && x < cols && y >= 0 && y < rows)
+            return grid[x, y];
+        return null;
+    }
+
     public GridCell GetCell(Vector3 worldPosition)
     {
         int x;
         int y;
         WorldToGrid(worldPosition, out x, out y);
-        if (x >= 0 && x < cols && y >= 0 && y < rows)
-            return grid[x, y];
-        return null;
+        return GetCell(x, y);
     }
 
     /// <summary>

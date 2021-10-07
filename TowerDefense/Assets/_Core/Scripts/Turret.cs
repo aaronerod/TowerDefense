@@ -11,7 +11,6 @@ public class Turret : MonoBehaviour, IAttacker, IBuildable
     private TurretData turretData;
     public GameObject GameObject => gameObject;
 
-    [SerializeField]
     private Transform transformTarget;
     [SerializeField]
     private IDamageReceiver target;
@@ -25,8 +24,9 @@ public class Turret : MonoBehaviour, IAttacker, IBuildable
     [SerializeField]
     float timeToNewAttack;
 
-    void Start()
+    public void Initialize(TurretData turretData)
     {
+        this.turretData = turretData;
     }
 
     public void UpdateBehaviors(List<Enemy> enemies)
@@ -83,13 +83,13 @@ public class Turret : MonoBehaviour, IAttacker, IBuildable
             {
                 timeToNewAttack = turretData.AttackData.AttackRate;
                 target.TakeDamage(this, turretData.AttackData.DamageAmount);
-//                Debug.LogError("Attack");
             }
         }
     }
 
     private void OnDrawGizmosSelected()
     {
+        if(turretData)
         Gizmos.DrawWireSphere(transform.position, turretData.AttackData.Range);
     }
 

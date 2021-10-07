@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 608c08c623c1944dab50b4ba11941c51, type: 3}
+  m_Name: TurretLaser
+  m_EditorClassIdentifier: 
+  attackData:
+    damageAmount: 0
+    attackRate: 2
+    range: 2
+    projectileType: 0
+  cost: 150
+  turretPrefab: {fileID: 6321206911654363290, guid: 7dbb0645d2dac491886a5ca24e543530, type: 3}
+  uiTurretPrefab: {fileID: 4117359718664386899, guid: af2419bf5815d4ee0bf19c1a8cb94516, type: 3}

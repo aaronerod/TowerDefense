@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88c9794f9a3344c3bd405314105fb73, type: 3}
+  m_Name: Level Data
+  m_EditorClassIdentifier: 
+  availableTurrets:
+  - {fileID: 11400000, guid: 25bdce43fe2f54f75a2e4e388740abd9, type: 2}
+  - {fileID: 11400000, guid: e91e78246af1e430ca7d3cfcb17d823a, type: 2}
+  - {fileID: 11400000, guid: b6a4290161b49459f86a630465704fa3, type: 2}
+  - {fileID: 11400000, guid: e06bf20c9f57741da8be6fc918b725a1, type: 2}
+  - {fileID: 11400000, guid: f345cbb55e06742d79c9830f5d16f13a, type: 2}
+  - {fileID: 11400000, guid: 3808aee247beb4d3f807abb23f39f71a, type: 2}
+  - {fileID: 11400000, guid: f4f684e96e1764e268fc51133ff19859, type: 2}

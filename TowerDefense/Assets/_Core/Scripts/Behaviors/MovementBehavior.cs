@@ -10,9 +10,10 @@ public class MovementBehavior : MonoBehaviour
     private Transform target;
     private float movementSpeed;
     private float range;
-    List<GridCell> path;
+    private List<GridCell> path;
 
-    GridCell targetPoint;
+    private GridCell targetPoint;
+    private Vector3 targetPointModified;
     public void Initialize(Transform targetPosition, float movementSpeed,float range)
     {
         target = targetPosition;
@@ -25,14 +26,26 @@ public class MovementBehavior : MonoBehaviour
     public void UpdateBehavior()
     {
         UpdateTargetPoint();
-        if (Vector2.Distance(transform.position, target.position) > range)
+
+        float distanceToTarget = Vector3.Distance(transform.position, target.position);
+        if (distanceToTarget > range)
         {
-            Vector3 desiredVelocity = targetPoint.WorldCoordinates - transform.position;
+            Vector3 desiredVelocity = targetPointModified - transform.position;
+            Vector3 desiredVelocityNormalized = desiredVelocity.normalized;
             desiredVelocity.Normalize();
-            desiredVelocity *= movementSpeed;
-            Vector3 steeringVelocity = desiredVelocity - transform.up;
+            desiredVelocityNormalized *= movementSpeed;
+            Vector3 steeringVelocity = desiredVelocityNormalized - transform.up;
+            steeringVelocity = Vector3.ClampMagnitude(steeringVelocity, movementSpeed);
+
             transform.up = steeringVelocity;
             transform.position += steeringVelocity * Time.deltaTime;
+        }
+        else
+        {
+            Vector3 desiredDirection = target.position - transform.position;
+            desiredDirection.Normalize();
+            Vector3 steeringDirection = desiredDirection - transform.up;
+            transform.up += steeringDirection * Time.deltaTime * 5;
         }
 
     }
@@ -41,20 +54,36 @@ public class MovementBehavior : MonoBehaviour
     {
         if(targetPoint==null && path.Count > 0)
         {
-            targetPoint = path[0];
-            path.RemoveAt(0);
+            SelectNextCell();
 
         }
         else
         {
-            if(Vector2.Distance(transform.position,targetPoint.WorldCoordinates)<.2f)
+            if(Vector2.Distance(transform.position,targetPointModified)<.2f)
             {
                 Debug.LogError("Move next point");
-                targetPoint = path[0];
-                path.RemoveAt(0);
+                SelectNextCell();
             }
         }
 
 //        Debug.LogError(Vector2.Distance(transform.position, targetPoint.WorldCoordinates));
     }
+    private void SelectNextCell()
+    {
+        if (path.Count > 0)
+        {
+            targetPoint = path[0];
+            path.RemoveAt(0);
+            if (path.Count > 0)
+                targetPointModified = targetPoint.WorldCoordinates + new Vector3(Random.Range(-.1f, .1f), Random.Range(-.1f, .1f));
+            else
+            {
+                Vector3 direction = transform.position - targetPoint.WorldCoordinates;
+                direction.Normalize();
+                Vector3 rangePosition = targetPoint.WorldCoordinates + direction * range;
+                targetPointModified = targetPoint.WorldCoordinates + (new Vector3(Random.Range(-1, 1), Random.Range(-1, 1)).normalized * range*.7f);
+                
+            }
+        }
+     }
 }
