@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9882fd1e45614c1981aca424ba27dd0, type: 3}
-  m_Name: Enemy Data
+  m_Name: Enemy3
   m_EditorClassIdentifier: 
   attackData:
     damageAmount: 1
@@ -18,5 +18,5 @@ MonoBehaviour:
     range: 0.7
     projectileType: 0
   movementSpeed: 2.5
-  enemyPrefab: {fileID: 791518318397668420, guid: dee1802d268b343ce9163ed18a048724, type: 3}
+  enemyPrefab: {fileID: 297245560938469899, guid: 2d34e0a03740747619140e1bda87fb3f, type: 3}
   health: 20

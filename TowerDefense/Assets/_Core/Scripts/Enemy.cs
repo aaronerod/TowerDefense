@@ -16,8 +16,9 @@ public class Enemy : DamageReceiver, IAttacker
 
     public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
 
-    public void Initialize()
+    public void Initialize(EnemyData enemyData)
     {
+        this.enemyData = enemyData;
         Health = enemyData.Health;
     }
     void Start()
@@ -55,7 +56,8 @@ public class Enemy : DamageReceiver, IAttacker
     }
     void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(transform.position, EnemyData.AttackData.Range);
+        if(enemyData)
+            Gizmos.DrawWireSphere(transform.position, EnemyData.AttackData.Range);
     }
 
 }

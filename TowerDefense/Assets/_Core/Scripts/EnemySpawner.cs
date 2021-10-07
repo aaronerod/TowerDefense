@@ -20,7 +20,7 @@ public class EnemySpawner : MonoBehaviour
         enemyInstance.transform.rotation = Quaternion.identity;
         enemyInstance.transform.position = worldPosition;
         Enemy enemy = enemyInstance.GetComponent<Enemy>();
-        enemy.Initialize();
+        enemy.Initialize(enemyData);
         enemy.attackTargetTransform = target;
 
         SetUpEnemy(enemy);

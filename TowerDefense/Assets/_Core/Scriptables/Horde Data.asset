@@ -16,7 +16,7 @@ MonoBehaviour:
   - groups:
     - enemies:
       - {fileID: 11400000, guid: 5f078a04046cf4e4f9935fca90c8b88c, type: 2}
-      spawnAmount: 1
+      spawnAmount: 2
       spawnRate: 1
     - enemies:
       - {fileID: 11400000, guid: 5f078a04046cf4e4f9935fca90c8b88c, type: 2}
